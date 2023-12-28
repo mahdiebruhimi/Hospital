@@ -135,25 +135,21 @@ public class Patient extends Hospital {
         int index = list.size();
         list.add(new ArrayList<String>());
 
-        System.out.println("Enter the new patient ID:");
+        System.out.println("Enter the patient's ID, the patient's name, the patient's doctor's name,\nthe date of hospitalization and the names of the three drugs in the following order:");
+        System.out.println("1220 AliAlizadeh dr.Rezazadeh 2023/12/28 Aspirin Amoxicillin Dexamethasone");
+
         list.get(index).add(input.next());
 
-        System.out.println("Enter the first and last name of the new patient without spaces:");
         list.get(index).add(input.next());
 
-        System.out.println("Enter the name of the new patient's doctor without spaces:");
         list.get(index).add(input.next());
 
-        System.out.println("Enter the new patient's admission date as (2024/01/01):");
         list.get(index).add(input.next());
 
-        System.out.println("Enter the name of drug " + (1) + " without spaces:");
         list.get(index).add(input.next());
 
-        System.out.println("Enter the name of drug " + (2) + " without spaces:");
         list.get(index).add(input.next());
 
-        System.out.println("Enter the name of drug " + (3) + " without spaces:");
         list.get(index).add(input.next());
 
         System.out.println("The new patient has been successfully added to the list.");
