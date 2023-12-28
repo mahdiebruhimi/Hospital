@@ -29,59 +29,62 @@ public class Main {
                             System.out.println("Enter nurse ID:");
                             String nurseId = input.next();
 
-                            boolean nurseValidation = nurse.getPassword(nurseId);
+                            if (nurse.validation(nurseId)) {
+                                boolean nurseValidation = nurse.getPassword(nurseId);
 
-                            if (!nurseValidation) {
-                                wrongPasswordNumber++;
-                                if (wrongPasswordNumber < 3) {
-                                    System.out.println("You can enter the wrong password only "  + (3 - wrongPasswordNumber) + " more times!");
-                                }
-                                else {
-                                    System.out.println("Your number of logins has expired.");
-                                    System.out.println("You do not have permission to access the application.");
-                                    return;
-                                }
 
-                                if (wrongPasswordNumber < 3) {
-                                    System.out.println("Please try again to login.");
-                                }
-                                System.out.println();
-                                break;
-                            }
+                                if (!nurseValidation) {
+                                    wrongPasswordNumber++;
+                                    if (wrongPasswordNumber < 3) {
+                                        System.out.println("You can enter the wrong password only "  + (3 - wrongPasswordNumber) + " more times!");
+                                    }
+                                    else {
+                                        System.out.println("Your number of logins has expired.");
+                                        System.out.println("You do not have permission to access the application.");
+                                        return;
+                                    }
 
-                            System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
-                            subMenuItem = input.next();
-
-                            while (!subMenuItem.equals("exit")) {
-
-                                switch (subMenuItem) {
-                                    case "updatePatientFile":
-                                        boolean updateFile = patient.updateFile();
-                                        if (updateFile) {
-                                            subMenuItem = "exit";
-                                            menuItem = "exit";
-                                        } else {
-                                            subMenuItem = "exit";
-                                        }
-                                        break;
-
-                                    case "changePassword":
-                                        System.out.println("Enter old password:");
-                                        String password = input.next();
-
-                                        boolean passwordValidation = nurse.validation(nurseId, password);
-                                        if (passwordValidation) {
-                                            nurse.updateFile(nurseId);
-                                            subMenuItem = "exit";
-                                        }
-                                        break;
-                                    default:
-                                        System.out.println("The chosen option is not correct.");
+                                    if (wrongPasswordNumber < 3) {
+                                        System.out.println("Please try again to login.");
+                                    }
+                                    System.out.println();
+                                    break;
                                 }
 
-                                if (nurseValidation) {
-                                    System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
-                                    subMenuItem = input.next();
+                                System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
+                                subMenuItem = input.next();
+
+                                while (!subMenuItem.equals("exit")) {
+
+                                    switch (subMenuItem) {
+                                        case "updatePatientFile":
+                                            boolean updateFile = patient.updateFile();
+                                            if (updateFile) {
+                                                subMenuItem = "exit";
+                                                menuItem = "exit";
+                                            } else {
+                                                subMenuItem = "exit";
+                                            }
+                                            break;
+
+                                        case "changePassword":
+                                            System.out.println("Enter old password:");
+                                            String password = input.next();
+
+                                            boolean passwordValidation = nurse.validation(nurseId, password);
+                                            if (passwordValidation) {
+                                                nurse.updateFile(nurseId);
+                                                subMenuItem = "exit";
+                                            }
+                                            break;
+                                        default:
+                                            System.out.println("The chosen option is not correct.");
+                                    }
+
+                                    if (nurseValidation) {
+                                        System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
+                                        subMenuItem = input.next();
+                                    }
                                 }
                             }
                         }

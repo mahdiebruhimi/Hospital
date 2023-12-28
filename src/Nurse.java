@@ -56,6 +56,16 @@ public class Nurse extends Hospital {
         return false;
     }
 
+    public boolean validation(String id) {
+        for (int i=0; i<list.size(); i++) {
+            if (list.get(i).get(0).equals(id)) {
+                return true;
+            }
+        }
+        System.out.println("There is no nurse with this ID.");
+        return false;
+    }
+
     public int getIndex (String id) {
         for (int i=0; i<list.size(); i++) {
             if (list.get(i).get(0).equals(id)) {

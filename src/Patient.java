@@ -86,6 +86,8 @@ public class Patient extends Hospital {
                 }
             }
 
+
+
             System.out.println("Please select an item:\nadd(drug) | remove(drug) | edit(drug) | exit");
             String updateDrugs = input.next();
 
