@@ -26,7 +26,10 @@ public class Main {
                     if (wrongPasswordNumber < 3) {
 
                         while (!subMenuItem.equals("exit")) {
-                            boolean nurseValidation = nurse.getID();
+                            System.out.println("Enter nurse ID:");
+                            String nurseId = input.next();
+
+                            boolean nurseValidation = nurse.getPassword(nurseId);
 
                             if (!nurseValidation) {
                                 wrongPasswordNumber++;
@@ -63,15 +66,12 @@ public class Main {
                                         break;
 
                                     case "changePassword":
-                                        System.out.println("Enter nurse ID:");
-                                        String id = input.next();
-
-                                        System.out.println("Enter nurse password");
+                                        System.out.println("Enter old password:");
                                         String password = input.next();
 
-                                        boolean passwordValidation = nurse.validation(id, password);
+                                        boolean passwordValidation = nurse.validation(nurseId, password);
                                         if (passwordValidation) {
-                                            nurse.updateFile(id);
+                                            nurse.updateFile(nurseId);
                                             subMenuItem = "exit";
                                         }
                                         break;

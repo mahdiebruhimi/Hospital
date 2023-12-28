@@ -32,10 +32,7 @@ public class Nurse extends Hospital {
     }
 
     @Override
-    public boolean getID () {
-        System.out.println("Enter nurse ID:");
-        String id = input.next();
-
+    public boolean getPassword (String id) {
         System.out.println("Enter nurse password:");
         String password = input.next();
 
