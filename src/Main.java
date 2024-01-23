@@ -14,18 +14,17 @@ public class Main {
         System.out.println("Please select an item:\nnurse | reception | exit");
 
         String menuItem = input.next();
-        int wrongPasswordNumber = 0;
+        int wrongPassword = 0;
         String subMenuItem = "";
 
         while (!menuItem.equals("exit")) {
 
             switch (menuItem) {
-
                 case "nurse":
 
-                    if (wrongPasswordNumber < 3) {
+                    if (wrongPassword < 3) {
 
-                        while (!subMenuItem.equals("exit")) {
+                        while (!subMenuItem.equals("back")) {
                             System.out.println("Enter nurse ID:");
                             String nurseId = input.next();
 
@@ -34,9 +33,9 @@ public class Main {
 
 
                                 if (!nurseValidation) {
-                                    wrongPasswordNumber++;
-                                    if (wrongPasswordNumber < 3) {
-                                        System.out.println("You can enter the wrong password only "  + (3 - wrongPasswordNumber) + " more times!");
+                                    wrongPassword++;
+                                    if (wrongPassword < 3) {
+                                        System.out.println("You can enter the wrong password only "  + (3 - wrongPassword) + " more times!");
                                     }
                                     else {
                                         System.out.println("Your number of logins has expired.");
@@ -44,26 +43,26 @@ public class Main {
                                         return;
                                     }
 
-                                    if (wrongPasswordNumber < 3) {
+                                    if (wrongPassword < 3) {
                                         System.out.println("Please try again to login.");
                                     }
                                     System.out.println();
                                     break;
                                 }
 
-                                System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
+                                System.out.println("Please select an item:\nupdatePatientFile | changePassword | back | exit");
                                 subMenuItem = input.next();
 
-                                while (!subMenuItem.equals("exit")) {
+                                while (!subMenuItem.equals("back")) {
 
                                     switch (subMenuItem) {
                                         case "updatePatientFile":
                                             boolean updateFile = patient.updateFile();
                                             if (updateFile) {
-                                                subMenuItem = "exit";
+                                                subMenuItem = "back";
                                                 menuItem = "exit";
                                             } else {
-                                                subMenuItem = "exit";
+                                                return;
                                             }
                                             break;
 
@@ -74,23 +73,28 @@ public class Main {
                                             boolean passwordValidation = nurse.validation(nurseId, password);
                                             if (passwordValidation) {
                                                 nurse.updateFile(nurseId);
-                                                subMenuItem = "exit";
+                                                subMenuItem = "back";
                                             }
                                             break;
+
+                                        case "exit":
+                                            return;
+
                                         default:
                                             System.out.println("The chosen option is not correct.");
                                     }
 
                                     if (nurseValidation) {
-                                        System.out.println("Please select an item:\nupdatePatientFile | changePassword | exit");
+                                        System.out.println("Please select an item:\nupdatePatientFile | changePassword | back | exit");
                                         subMenuItem = input.next();
                                     }
                                 }
                             }
                         }
                     }
+
                     else {
-                        subMenuItem = "exit";
+                        subMenuItem = "back";
                         menuItem = "exit";
                         return;
                     }
@@ -98,10 +102,10 @@ public class Main {
                     break;
 
                 case "reception":
-                    System.out.println("Please select an item:\nadd(new patient) | remove(a patient) | search(patient) | display(all patients file) | exit");
+                    System.out.println("Please select an item:\nadd(new patient) | remove(a patient) | search(patient) | display(all patients file) | back | exit");
                     subMenuItem = input.next();
 
-                    while (!subMenuItem.equals("exit")) {
+                    while (!subMenuItem.equals("back")) {
                         switch (subMenuItem) {
                             case "add":
                                 patient.add();
@@ -119,14 +123,20 @@ public class Main {
                                 patient.display();
                                 break;
 
+                            case "exit":
+                                return;
+
                             default:
                                 System.out.println("The chosen option is not correct.");
                         }
 
-                        System.out.println("Please select an item:\nadd(new patient) | remove(a patient) | search(patient) | display(all patients file) | exit");
+                        System.out.println("Please select an item:\nadd(new patient) | remove(a patient) | search(patient) | display(all patients file) | back | exit");
                         subMenuItem = input.next();
                     }
                     break;
+
+                case "exit":
+                    return;
 
                 default:
                     System.out.println("The chosen option is not correct.");

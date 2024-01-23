@@ -88,10 +88,10 @@ public class Patient extends Hospital {
 
 
 
-            System.out.println("Please select an item:\nadd(drug) | remove(drug) | edit(drug) | exit");
+            System.out.println("Please select an item:\nadd(drug) | remove(drug) | edit(drug) | back | exit");
             String updateDrugs = input.next();
 
-            while (!updateDrugs.equals("exit")) {
+            while (!updateDrugs.equals("back")) {
 
                 switch (updateDrugs) {
                     case "add":
@@ -117,11 +117,14 @@ public class Patient extends Hospital {
                         writeFile();
                         break;
 
+                    case "exit":
+                        return false;
+
                     default:
                         System.out.println("The chosen option is not correct.");
                 }
 
-                System.out.println("Please select an item:\nadd(drug) | remove(drug) | edit(drug) | exit");
+                System.out.println("Please select an item:\nadd(drug) | remove(drug) | edit(drug) | back | exit");
                 updateDrugs = input.next();
             }
             return true;
@@ -129,8 +132,8 @@ public class Patient extends Hospital {
 
         else {
             System.out.println("There is no patient in the list.");
-            return false;
         }
+        return true;
     }
 
     public void add () {
@@ -140,19 +143,29 @@ public class Patient extends Hospital {
         System.out.println("Enter the patient's ID, the patient's name, the patient's doctor's name,\nthe date of hospitalization and the names of the three drugs in the following order:");
         System.out.println("1220 AliAlizadeh dr.Rezazadeh 2023/12/28 Aspirin Amoxicillin Dexamethasone");
 
-        list.get(index).add(input.next());
+        String patientID = input.next();
+        boolean nonRepeatID = validation(patientID);
 
-        list.get(index).add(input.next());
+        if (!nonRepeatID) {
+            list.get(index).add(patientID);
 
-        list.get(index).add(input.next());
+            list.get(index).add(input.next());
 
-        list.get(index).add(input.next());
+            list.get(index).add(input.next());
 
-        list.get(index).add(input.next());
+            list.get(index).add(input.next());
 
-        list.get(index).add(input.next());
+            list.get(index).add(input.next());
 
-        list.get(index).add(input.next());
+            list.get(index).add(input.next());
+
+            list.get(index).add(input.next());
+        }
+
+        else {
+            System.out.println("The entered ID already exists.");
+            return;
+        }
 
         System.out.println("The new patient has been successfully added to the list.");
         writeFile();
