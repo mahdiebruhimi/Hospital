@@ -1,5 +1,5 @@
-1111 aaa dr 2022/02/12 anti - -
-1100 bbb de 2021/01/11 lp - -
-2233 bbb de 2021/01/11 lp - -
-0008 bbb de 2021/01/11 lp - -
-1023 bbb de 2021/01/11 lp - -
+0001 ali dr.kazemi 2024/01/10 Cefixime Amoxicillin Albumin
+0002 reza dr.alavi 2024/01/11 Metformin Alprazolam Xanax
+0003 nima dr.rezaei 2024/01/12 Bisacodyl Letizen Concor
+0004 hossein dr.alizadeh 2024/01/13 Betahistine Celebrex Beclomethasone
+0005 amir dr.babazadeh 2024/01/14 Clindamycin Metoral Colofac
